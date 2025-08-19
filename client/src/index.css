@@ -6,7 +6,7 @@
 
 @layer base {
   html {
-    overflow-y: hidden;
+    
   }
   :root {
     --background: 0 0% 100%;
@@ -67,14 +67,12 @@
   /* Disable bouncy scroll effect globally */
   html,
   body {
-    overscroll-behavior-y: none;
+    
     -webkit-overflow-scrolling: touch;
   }
 
   /* Disable overscroll for all scrollable elements */
-  * {
-    overscroll-behavior: none;
-  }
+  
 
   /* Smooth scrolling */
   html {

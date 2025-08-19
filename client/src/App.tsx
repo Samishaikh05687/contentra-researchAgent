@@ -1,3 +1,5 @@
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
 import { AuthenticatedApp } from "@/components/authenticated-app";
 import { Login } from "@/components/login";
 import { Toaster } from "@/components/ui/toaster";
@@ -15,10 +17,7 @@ function App() {
 
   const handleUserLogin = (authenticatedUser: User) => {
     const avatarUrl = `https://api.dicebear.com/9.x/avataaars/svg?seed=${authenticatedUser.name}`;
-    const userWithImage = {
-      ...authenticatedUser,
-      image: avatarUrl,
-    };
+    const userWithImage = { ...authenticatedUser, image: avatarUrl };
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(userWithImage));
     setUser(userWithImage);
   };
@@ -30,15 +29,25 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="h-screen bg-background">
-        {user ? (
-          <AuthenticatedApp user={user} onLogout={handleLogout} />
-        ) : (
-          <Login onLogin={handleUserLogin} />
-        )}
+      <Routes>
+        {/* Landing page as default route */}
+        <Route path="/" element={<LandingPage />} />
 
-        <Toaster />
-      </div>
+        {/* Main app */}
+        <Route
+          path="/app"
+          element={
+            <div className="h-screen bg-background">
+              {user ? (
+                <AuthenticatedApp user={user} onLogout={handleLogout} />
+              ) : (
+                <Login onLogin={handleUserLogin} />
+              )}
+              <Toaster />
+            </div>
+          }
+        />
+      </Routes>
     </ThemeProvider>
   );
 }
