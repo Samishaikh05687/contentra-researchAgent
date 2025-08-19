@@ -1,5 +1,5 @@
 import { sha256 } from "js-sha256";
-import { Bot, Eye, EyeOff, Mail, Lock, Github, Chrome } from "lucide-react";
+import { Bot,User2, Eye, EyeOff, Mail, Lock, Github, Chrome, ChevronRightCircleIcon } from "lucide-react";
 import React, { useState } from "react";
 import { User } from "stream-chat";
 import { Button } from "./ui/button";
@@ -48,8 +48,8 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
           <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center mx-auto">
             <Bot className="h-7 w-7 text-primary-foreground" />
           </div>
-          <CardTitle className="text-2xl font-bold">
-            Welcome back
+          <CardTitle className="text-4xl  font-medium">
+            Welcome
           </CardTitle>
           <CardDescription className="text-sm text-muted-foreground">
             Sign in to continue to your AI workspace
@@ -61,14 +61,14 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
             {/* Username / Email */}
             <div className="space-y-2">
               <Label htmlFor="username" className="text-sm font-medium">
-                Email or Username
+                Username
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <User2 className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="username"
                   type="text"
-                  placeholder="you@example.com"
+                  placeholder="@JhonDoe123"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="h-11 pl-10"

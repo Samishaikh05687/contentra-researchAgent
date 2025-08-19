@@ -292,7 +292,7 @@ const navigate = useNavigate();
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.8 }}
                 className="text-4xl md:text-6xl font-sans tracking-tight"
               >
                 Write faster.<br/> Research smarter. <span className="text-primary">Collaborate beautifully.</span>

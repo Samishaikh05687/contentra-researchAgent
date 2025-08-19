@@ -1,5 +1,6 @@
 import cors from "cors";
 import "dotenv/config";
+import crypto from "crypto";
 import express from "express";
 import { createAgent } from "./agents/createAgent";
 import { AgentPlatform, AIAgent } from "./agents/type";
@@ -27,6 +28,9 @@ setInterval(async () => {
     }
   }
 }, 5000);
+
+
+
 
 app.get("/", (req, res) => {
   res.json({
@@ -155,6 +159,7 @@ app.post("/token", async (req, res) => {
       });
     }
 
+    
     // Create token with expiration (1 hour) and issued at time for security
     const issuedAt = Math.floor(Date.now() / 1000);
     const expiration = issuedAt + 60 * 60; // 1 hour from now
