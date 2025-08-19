@@ -1,6 +1,7 @@
+// src/agents/createAgent.ts
 import { StreamChat } from "stream-chat";
 import { apiKey, serverClient } from "../serverClient";
-import { OpenAIAgent } from "./openai/OpenAIAgent";
+import  CohereAIAgent  from "./openai/CohereAIAgent";
 import { AgentPlatform, AIAgent } from "./type";
 
 export const createAgent = async (
@@ -10,7 +11,8 @@ export const createAgent = async (
   channel_id: string
 ): Promise<AIAgent> => {
   const token = serverClient.createToken(user_id);
-  // This is the client for the AI bot user
+
+  // Stream client
   const chatClient = new StreamChat(apiKey, undefined, {
     allowServerSideConnect: true,
   });
@@ -20,9 +22,12 @@ export const createAgent = async (
   await channel.watch();
 
   switch (platform) {
-    case AgentPlatform.WRITING_ASSISTANT:
-    case AgentPlatform.OPENAI:
-      return new OpenAIAgent(chatClient, channel);
+    
+    case AgentPlatform.COHERE:
+      return new CohereAIAgent(chatClient, channel);
+
+    
+
     default:
       throw new Error(`Unsupported agent platform: ${platform}`);
   }
